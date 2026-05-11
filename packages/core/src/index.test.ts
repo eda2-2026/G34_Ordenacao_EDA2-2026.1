@@ -237,6 +237,7 @@ describe("analyzeLogFile", () => {
   test("should return empty result for empty content", () => {
     const result = analyzeLogFile("");
     expect(result.totalRequests).toBe(0);
+    expect(result.uniqueIpCount).toBe(0);
     expect(result.topIps).toEqual([]);
     expect(result.processingTimeMs).toBeGreaterThanOrEqual(0);
   });
@@ -244,6 +245,7 @@ describe("analyzeLogFile", () => {
   test("should skip invalid log lines", () => {
     const result = analyzeLogFile("garbage line that is not a valid log\nanother bad line\n");
     expect(result.totalRequests).toBe(0);
+    expect(result.uniqueIpCount).toBe(0);
     expect(result.topIps).toEqual([]);
   });
 
@@ -258,6 +260,7 @@ describe("analyzeLogFile", () => {
 
     const result = analyzeLogFile(sampleLog);
     expect(result.totalRequests).toBe(5);
+    expect(result.uniqueIpCount).toBe(2);
     expect(result.topIps.length).toBe(2);
 
     // 192.168.1.1 appears 3 times (60%), 10.0.0.5 appears 2 times (40%)
@@ -281,6 +284,7 @@ describe("analyzeLogFile", () => {
     const result = analyzeLogFile(mixedLog);
     // Only 2 valid lines, plus 1 empty (skipped) + 1 invalid (skipped)
     expect(result.totalRequests).toBe(2);
+    expect(result.uniqueIpCount).toBe(2);
     expect(result.topIps.length).toBe(2);
   });
 
@@ -288,6 +292,7 @@ describe("analyzeLogFile", () => {
     const logWithDash = '10.0.0.1 - - [10/May/2026:14:32:11 +0000] "POST /api/login HTTP/1.1" 401 -';
     const result = analyzeLogFile(logWithDash);
     expect(result.totalRequests).toBe(1);
+    expect(result.uniqueIpCount).toBe(1);
     expect(result.topIps[0].ip).toBe("10.0.0.1");
   });
 
@@ -302,6 +307,7 @@ describe("analyzeLogFile", () => {
     const result = analyzeLogFile(content);
 
     expect(result.totalRequests).toBe(5000);
+    expect(result.uniqueIpCount).toBe(5000);
     expect(result.topIps.length).toBeLessThanOrEqual(100);
     expect(result.processingTimeMs).toBeLessThan(5000); // well under 5s target
   });
