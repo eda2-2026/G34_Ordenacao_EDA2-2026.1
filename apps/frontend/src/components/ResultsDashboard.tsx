@@ -37,7 +37,7 @@ export function ResultsDashboard({ result }: ResultsDashboardProps) {
           </div>
           <div className="stat-info">
             <h4>Unique IPs Found</h4>
-            <p className="text-gradient">{result.topIps.length}</p>
+            <p className="text-gradient">{result.uniqueIpCount.toLocaleString()}</p>
           </div>
         </div>
       </div>

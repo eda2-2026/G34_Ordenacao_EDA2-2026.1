@@ -6,6 +6,7 @@ export interface TopIp {
 
 export interface AnalyzeResult {
   totalRequests: number;
+  uniqueIpCount: number;
   processingTimeMs: number;
   topIps: TopIp[];
   error?: string;

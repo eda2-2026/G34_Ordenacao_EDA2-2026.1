@@ -128,6 +128,7 @@ export function analyzeLogFile(content: string): AnalysisResult {
 
   return {
     totalRequests: validCount,
+    uniqueIpCount: counted.length,
     processingTimeMs,
     topIps,
   };
