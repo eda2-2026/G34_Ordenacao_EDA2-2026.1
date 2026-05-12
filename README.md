@@ -2,6 +2,14 @@
 
 RadixWatch é um projeto acadêmico fullstack focado em análise de logs massivos de servidores (Apache/Nginx) com altíssima performance, utilizando agrupamentos rápidos com algoritmos de baixo nível (Radix Sort e Typed Arrays).
 
+## Alunos
+| Matrícula | Aluno |
+| -- | -- |
+| 232037786 | Gustavo da Costa Cintra |
+| 211030765 | Guilherme Storch de Oliveira | 
+
+## Demonstração
+
 > Link para o vídeo de apresentação: https://youtu.be/xjH9fZNzaOI
 
 ## Arquitetura do Monorepo
